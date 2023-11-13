@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: rgb(140, 0, 255);
+            color: #fff;
+            padding: 10px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ccc;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        td {
+            transition: background-color 0.3s;
+        }
+
+        .add-button, .edit-button, .delete-button {
+            display: inline-block;
+            width: 120px;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .add-button {
+            background-color: #19e203;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-button:hover {
+            background-color: #12a702;
+        }
+
+        .edit-button {
+            background-color: #006eff;
+        }
+
+        .edit-button:hover {
+            background-color: #002fff;
+        }
+
+        .delete-button {
+            background-color: #e74c3c;
+        }
+
+        .delete-button:hover {
+            background-color: #801d14;
+        }
+
+        .success-message {
+            color: #008000;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .action-icons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tipo-column {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Produtos</h1>
+    <div th:if="${mensagem}" class="success-message">
+        <p th:text="${mensagem}"></p>
+    </div>
+    <div th:if="${erro}" class="error-message">
+        <p th:text="${erro}"></p>
+    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Tipo</th>
+            <th>Ações</th>
+        </tr>
+        <tr th:each="produto, rowStat : ${produtos}" th:class="${rowStat.odd} ? 'odd' : 'even'">
+            <td th:text="${produto.id}" th:style="${rowStat.odd} ? 'background-color: #f9f9f9;' : 'background-color: #ccc;'"></td>
+            <td th:text="${produto.nome}" th:style="${rowStat.odd} ? 'background-color: #f9f9f9;' : 'background-color: #ccc;'"></td>
+            <td th:text="${produto.preco}" th:style="${rowStat.odd} ? 'background-color: #f9f9f9;' : 'background-color: #ccc;'"></td>
+            <td class="tipo-column" th:text="${produto.tipo}"></td>
+            <td class="action-icons">
+                <a th:href="@{/editar/{id}(id=${produto.id})}" class="edit-button">Editar</a>
+                <a th:href="@{/excluir/{id}(id=${produto.id})}" class="delete-button">Excluir</a>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/adicionar}" class="add-button">Adicionar Produto</a>
+</body>
+
+</html>

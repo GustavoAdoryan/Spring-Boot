@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Adicionar Produto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 50%;
+            margin: 20px auto;
+            text-align: left;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"], /* Ajuste aqui para incluir type="number" */
+        select {
+            width: calc(100% - 22px); /* Subtraí 22px para compensar o espaçamento da borda e do preenchimento */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #6db365;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4e8c4e;
+        }
+
+        a.th-voltar {
+            text-decoration: none;
+            background-color: #428bca;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+            align-self: center;
+        }
+
+        a.th-voltar:hover {
+            background-color: #1e4f91;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adicionar Produto</h1>
+    <div th:if="${mensagem}" style="color: green;">
+        <p th:text="${mensagem}"></p>
+    </div>
+    <div th:if="${erro}" style="color: red;">
+        <p th:text="${erro}"></p>
+    </div>
+    <div class="form-container">
+        <form th:action="@{/adicionar}" th:object="${produto}" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" required />
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" th:field="*{preco}" required min="0.01" step="0.01" />
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" th:field="*{tipo}" required>
+                <option value="ALIMENTO">Alimento</option>
+                <option value="BEBIDA">Bebida</option>
+                <option value="HIGIENE">Higiene</option>
+                <option value="FRIOS">Frios</option>
+            </select>
+            <input type="submit" value="Adicionar" />
+        </form>
+        <a th:href="@{/}" class="th-voltar">Voltar para a lista de produtos</a>
+    </div>
+</body>
+
+</html>

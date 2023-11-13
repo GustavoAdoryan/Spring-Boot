@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Confirmação de Exclusão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .info-container {
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .info-group {
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .confirm-button,
+        .cancel-button {
+            display: inline-block;
+            width: 150px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            font-size: 16px;
+            outline: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .confirm-button {
+            background-color: #e74c3c;
+        }
+
+        .confirm-button:hover {
+            background-color: #801d14;
+        }
+
+        .cancel-button {
+            background-color: #3498db;
+        }
+
+        .cancel-button:hover {
+            background-color: #206599;
+        }
+
+        form {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Confirmação de Exclusão</h1>
+    <div class="content-container">
+        <div class="info-container">
+            <div class="info-group">
+                <p class="info-label">Tem certeza de que deseja excluir o produto?</p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">ID:</p>
+                <p class="info-value" th:text="${produto.id}"></p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">Nome:</p>
+                <p class="info-value" th:text="${produto.nome}"></p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">Tipo:</p>
+                <p class="info-value" th:text="${produto.tipo}"></p>
+            </div>
+            <div class="info-group">
+                <p class="info-label">Preço:</p>
+                <p class="info-value" th:text="${produto.preco}"></p>
+            </div>
+        </div>
+        <div class="button-container">
+            <form action="/excluir/{id}" method="post">
+                <input type="hidden" name="id" th:value="${produto.id}" />
+                <button class="confirm-button" type="submit">Confirmar Exclusão</button>
+            </form>
+            <a th:href="@{/}" class="cancel-button">Cancelar</a>
+        </div>
+    </div>
+</body>
+
+</html>
