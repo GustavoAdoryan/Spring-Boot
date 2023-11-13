@@ -26,8 +26,8 @@ Este é um projeto CRUD (Create, Read, Update, Delete) full stack em Java que de
 ## Como Executar o Projeto
 
 1. Certifique-se de ter o Java instalado na sua máquina.
-2. Clone este repositório: `git clone https://github.com/seu-usuario/seu-projeto.git`
-3. Navegue até o diretório do projeto: `cd seu-projeto`
+2. Clone este repositório.
+3. Navegue até o diretório do projeto.
 4. Execute o projeto usando o Maven: `mvn spring-boot:run` ou execute a classe `Applicattion.java`
 5. Acesse o aplicativo no navegador: `http://localhost:8080`
 
