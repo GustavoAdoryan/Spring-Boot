@@ -38,4 +38,4 @@ Este é um projeto CRUD (Create, Read, Update, Delete) full stack em Java que de
 
 ## Autor
 
-Gustavo Adoryan - [GitHub](https://github.com/GustavoAdoryan) / [Linkedin](www.linkedin.com/in/gustavoadoryan)
+Gustavo Adoryan - [GitHub](https://github.com/GustavoAdoryan) / [Linkedin](https://www.linkedin.com/in/gustavoadoryan/)
